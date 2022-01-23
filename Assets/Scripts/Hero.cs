@@ -37,11 +37,12 @@ public class Hero : MonoBehaviour
         var isJumping = _direction.y > 0;
         if (isJumping)
         {
-            if (IsGrounded())
+            if (IsGrounded() && _rigidbody.velocity.y <= 0)
             {
                 _rigidbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse); // задает силу которую мы добавляем  и как её добавим, в данном случае наверх есть два режима импульс и просто сила просто толчок, в нашем случае импульс 
             }
-        } else if (_rigidbody.velocity.y > 0)
+        }
+        else if (_rigidbody.velocity.y > 0)
         {
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
         }
@@ -56,7 +57,7 @@ public class Hero : MonoBehaviour
         //так же есть метод CircleCast указываем радиус позицию и направление 
         //return hit.collider != null; //Возвращаем значение получили ли мы при отправке луча пересечение с колайдером земли
 
-        
+
     }
 
     //private void OnDrawGizmos() //метод отрисовывается во время отрисовки дебажных иконок и информации на нашей сцене 
