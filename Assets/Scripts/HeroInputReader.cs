@@ -4,16 +4,19 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-
-public class HeroInputReader : MonoBehaviour
+namespace FirstPlatformer
 {
-   [SerializeField] private Hero _hero;
-
-
-    public void OnMovement(InputAction.CallbackContext context)
+    public class HeroInputReader : MonoBehaviour
     {
-        var direction = context.ReadValue<Vector2>();
-        _hero.SetDirection(direction);
-    }
+        [SerializeField] private Hero _hero;
 
+
+        public void OnMovement(InputAction.CallbackContext context)
+        {
+            var direction = context.ReadValue<Vector2>();
+            _hero.SetDirection(direction);
+        }
+
+    }
 }
+

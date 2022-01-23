@@ -54,8 +54,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\HeroInputReader.cs" />
-    <Compile Include="Assets\Scripts\Hero.cs" />
     <Compile Include="Assets\Scripts\LayerCheck.cs" />
+    <Compile Include="Assets\Scripts\Hero.cs" />
+    <Compile Include="Assets\Scripts\Component\EnterTriggerComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\ReloadLevelComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\DestroyObjectComponent.cs" />
+    <Compile Include="Assets\Scripts\FollowTarget.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
