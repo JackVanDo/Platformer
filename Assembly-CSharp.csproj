@@ -54,12 +54,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\HeroInputReader.cs" />
-    <Compile Include="Assets\Scripts\LayerCheck.cs" />
-    <Compile Include="Assets\Scripts\Hero.cs" />
-    <Compile Include="Assets\Scripts\Component\EnterTriggerComponent.cs" />
-    <Compile Include="Assets\Scripts\Component\ReloadLevelComponent.cs" />
     <Compile Include="Assets\Scripts\Component\DestroyObjectComponent.cs" />
     <Compile Include="Assets\Scripts\FollowTarget.cs" />
+    <Compile Include="Assets\Scripts\LayerCheck.cs" />
+    <Compile Include="Assets\Scripts\Component\ReloadLevelComponent.cs" />
+    <Compile Include="Assets\Scripts\Hero.cs" />
+    <Compile Include="Assets\Scripts\Component\EnterTriggerComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\CollectCoinComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -697,6 +698,12 @@
     </Reference>
     <Reference Include="Unity.2D.IK.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll</HintPath>

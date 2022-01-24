@@ -20,6 +20,7 @@ namespace FirstPlatformer
 
         private Vector2 _direction;
         private Rigidbody2D _rigidbody;
+        public float _coinsCount = 0;
 
         private void Awake()
         {
