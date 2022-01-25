@@ -8,25 +8,25 @@ namespace FirstPlatformer.Components
     public class CollectCoinComponent : MonoBehaviour
     {
         [SerializeField] private string _tag;
+        [SerializeField] private Hero _hero;
 
 
-        private float _coinsCount;
-        
 
-        public void CollectCoins()
-        {
-            switch (_tag)
-            {
-                case "silver":
-                    _coinsCount++;
-                    Debug.Log($"ќбщее кол-во монет {_coinsCount}");
-                    break;
-                case "gold":
-                    _coinsCount += 10;
-                    Debug.Log($"ќбщее кол-во монет {_coinsCount}");
-                    break;
-            }          
-        }
+
+        //public void CollectCoins()
+        //{
+        //    switch (_tag)
+        //    {
+        //        case "silver":
+        //            _hero.AddCoins(1);
+        //            Debug.Log($"ќбщее кол-во монет {_hero._coinsCount}");
+        //            break;
+        //            case "gold":
+        //            _hero.AddCoins(10);
+        //            Debug.Log($"ќбщее кол-во монет {_hero._coinsCount}");
+        //            break;
+        //    }          
+        //}
 
 
     }
