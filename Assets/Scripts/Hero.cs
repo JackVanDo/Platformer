@@ -21,10 +21,19 @@ namespace FirstPlatformer
         private Vector2 _direction;
         private Rigidbody2D _rigidbody;
         private int _coinsCount = 0;
+        private Animator _animator;
+        private SpriteRenderer _sprite;
+
+
+        private static readonly int isGroundKey = Animator.StringToHash("is-ground"); // int так как метод преобразует строку к int
+        private static readonly int isRunning = Animator.StringToHash("is-running");
+        private static readonly int verticalVelocity = Animator.StringToHash("vertical-velocity");
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>(); //получаем физическое тело обьекта, или получаем компонент RigidBody
+            _animator = GetComponent<Animator>();
+            _sprite = GetComponent<SpriteRenderer>();
         }
 
         public void SetDirection(Vector2 direction)
@@ -38,9 +47,10 @@ namespace FirstPlatformer
             _rigidbody.velocity = new Vector2(_direction.x * _speed, _rigidbody.velocity.y);
 
             var isJumping = _direction.y > 0;
+            var isGrounded = IsGrounded();
             if (isJumping)
             {
-                if (IsGrounded() && _rigidbody.velocity.y <= 0)
+                if (isGrounded && _rigidbody.velocity.y <= 0)
                 {
                     _rigidbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse); // задает силу которую мы добавляем  и как её добавим, в данном случае наверх, есть два режима импульс и просто сила просто толчок, в нашем случае импульс 
                 }
@@ -48,6 +58,27 @@ namespace FirstPlatformer
             else if (_rigidbody.velocity.y > 0)
             {
                 _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
+            }
+
+            _animator.SetBool(isGroundKey, isGrounded);
+            _animator.SetBool(isRunning, _direction.x != 0);
+            _animator.SetFloat(verticalVelocity, _rigidbody.velocity.y);
+            //_animator.SetBool("is-ground", isGrounded); но данный метод не эффективен с точки зрения оптимизации так как каждый раз при фиксе апдейте вызываем метод StringToHash
+            //_animator.SetBool("is-running", _direction.x != 0); // Задаем значение is-running которое мы создали в аниматоре для понимания бежим или нет
+            //_animator.SetFloat("vertical-velocity", _rigidbody.velocity.y);
+
+            UpdateSpriteDirection();
+        }
+
+        private void UpdateSpriteDirection()
+        {
+            if (_direction.x > 0)
+            {
+                _sprite.flipX = false;
+            }
+            else if (_direction.x < 0)
+            {
+                _sprite.flipX = true;
             }
         }
 
