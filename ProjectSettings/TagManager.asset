@@ -54,6 +54,12 @@ TagManager:
   - name: Props
     uniqueID: 2226761077
     locked: 0
+  - name: TileLevel
+    uniqueID: 1298581795
+    locked: 0
   - name: Hero
     uniqueID: 82822277
+    locked: 0
+  - name: Grass
+    uniqueID: 1937008341
     locked: 0

@@ -36,7 +36,7 @@ namespace FirstPlatformer.Components
 
         private void Update()
         {
-            if (_nextFrameTime > Time.time) return; //проверяем флан и наступило ли время для показа нового спрайта
+            if (_nextFrameTime > Time.time) return; //проверяем наступило ли время для показа нового спрайта
 
             if(_currentSprite >= _sprites.Length) // Проверяем не вышли ли за пределы массива
             {
