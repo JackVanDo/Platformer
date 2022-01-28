@@ -23,6 +23,8 @@ namespace FirstPlatformer
         private int _coinsCount = 0;
         private Animator _animator;
         private SpriteRenderer _sprite;
+        private bool _isGrounded;
+        private bool _allowDoubleJump;
 
 
         private static readonly int isGroundKey = Animator.StringToHash("is-ground"); // int так как метод преобразует строку к int
@@ -41,26 +43,20 @@ namespace FirstPlatformer
             _direction = direction;
         }
 
+        private void Update()
+        {
+            _isGrounded = IsGrounded();
+        }
 
         private void FixedUpdate()
         {
-            _rigidbody.velocity = new Vector2(_direction.x * _speed, _rigidbody.velocity.y);
+            var xVelocity = _direction.x * _speed; // считаем наши координаты
+            var yVelocity = CalculateYVelocity();
+            _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
 
-            var isJumping = _direction.y > 0;
-            var isGrounded = IsGrounded();
-            if (isJumping)
-            {
-                if (isGrounded && _rigidbody.velocity.y <= 0)
-                {
-                    _rigidbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse); // задает силу которую мы добавляем  и как её добавим, в данном случае наверх, есть два режима импульс и просто сила просто толчок, в нашем случае импульс 
-                }
-            }
-            else if (_rigidbody.velocity.y > 0)
-            {
-                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
-            }
 
-            _animator.SetBool(isGroundKey, isGrounded);
+
+            _animator.SetBool(isGroundKey, _isGrounded);
             _animator.SetBool(isRunning, _direction.x != 0);
             _animator.SetFloat(verticalVelocity, _rigidbody.velocity.y);
             //_animator.SetBool("is-ground", isGrounded); но данный метод не эффективен с точки зрения оптимизации так как каждый раз при фиксе апдейте вызываем метод StringToHash
@@ -68,6 +64,42 @@ namespace FirstPlatformer
             //_animator.SetFloat("vertical-velocity", _rigidbody.velocity.y);
 
             UpdateSpriteDirection();
+        }
+
+        private float CalculateYVelocity()
+        {
+            var yVelocity = _rigidbody.velocity.y;
+            var isJumpingPressing = _direction.y > 0;
+
+            if (_isGrounded) _allowDoubleJump = true;
+
+            if (isJumpingPressing)
+            {
+                yVelocity = CalculateJumpVelocity(yVelocity);
+            }
+            else if (_rigidbody.velocity.y > 0)
+            {
+                yVelocity *= 0.5f;
+            }
+
+            return yVelocity;
+        }
+
+        private float CalculateJumpVelocity(float yVelocity)
+        {
+            var isFalling = _rigidbody.velocity.y <= 0.001f;
+            if (!isFalling) return yVelocity;
+
+            if(_isGrounded)
+            {
+                yVelocity += _jumpSpeed;
+            } else if (_allowDoubleJump)
+            {
+                yVelocity = _jumpSpeed;
+                _allowDoubleJump = false;
+            }
+
+            return yVelocity;
         }
 
         private void UpdateSpriteDirection()
