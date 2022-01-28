@@ -55,7 +55,6 @@ namespace FirstPlatformer
             _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
 
 
-
             _animator.SetBool(isGroundKey, _isGrounded);
             _animator.SetBool(isRunning, _direction.x != 0);
             _animator.SetFloat(verticalVelocity, _rigidbody.velocity.y);
