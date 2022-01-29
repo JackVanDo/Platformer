@@ -1,3 +1,5 @@
+using FirstPlatformer.Components;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +15,11 @@ namespace FirstPlatformer
         [SerializeField] private float _jumpSpeed;
         [SerializeField] private float _damageJumpSpeed;
         [SerializeField] private LayerCheck _groundCheck;
+        [SerializeField] private float _interactionRadius;
+        [SerializeField] private LayerMask _interactionLayer;
+
+
+
         //[SerializeField] private Vector3 _groundCheckPositionDelta;
         //[SerializeField] private LayerMask _groundLayer; // Добавляем поле в котором будет физический слой земли тип LayerMask 
         //[SerializeField] private float _groundCheckRadisus; //радиус проверки земли
@@ -26,7 +33,7 @@ namespace FirstPlatformer
         private SpriteRenderer _sprite;
         private bool _isGrounded;
         private bool _allowDoubleJump;
-
+        private Collider2D[] _interactionResult = new Collider2D[1];
 
         private static readonly int isGroundKey = Animator.StringToHash("is-ground"); // int так как метод преобразует строку к int
         private static readonly int isRunning = Animator.StringToHash("is-running");
@@ -147,6 +154,21 @@ namespace FirstPlatformer
         {
             _animator.SetTrigger(Hit);
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed); // при получении урона устанавливаем насколько подпрыгнет герой
+        }
+
+
+        public void Interact()
+        {
+            var size = Physics2D.OverlapCircleNonAlloc(transform.position, _interactionRadius, _interactionResult, _interactionLayer); // позволяет получить пересекающиеся обьекты, но не выделяет лишнюю память
+
+            for (int i = 0; i < size; i++)
+            {
+                var interactable = _interactionResult[i].GetComponent<InteractableComponent>();
+                if(interactable != null)
+                {
+                    interactable.Interact();
+                }
+            }
         }
 
         //private void OnDrawGizmos() //метод отрисовывается во время отрисовки дебажных иконок и информации на нашей сцене 
