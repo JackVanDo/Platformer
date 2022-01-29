@@ -59,10 +59,13 @@
     <Compile Include="Assets\Scripts\FollowTarget.cs" />
     <Compile Include="Assets\Scripts\LayerCheck.cs" />
     <Compile Include="Assets\Scripts\Component\ReloadLevelComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\CheatConrollerComponent.cs" />
     <Compile Include="Assets\Scripts\Component\CollectCoinComponent.cs" />
     <Compile Include="Assets\Scripts\Hero.cs" />
     <Compile Include="Assets\Scripts\Component\EnterTriggerComponent.cs" />
-    <Compile Include="Assets\Scripts\Component\CheatConrollerComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\EnterCollisionComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\HealthComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\DamageComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -11,6 +11,7 @@ namespace FirstPlatformer
         [SerializeField] private float _speed; //[SerializeField] это атрибут которые мы можем помечать разные члены класса, в данном случае он помечает поле сериализуемым то есть сохраненым ,
                                                //Unity будет отображать такое поле в инспекторе а во вторыз будет сохранять значение этого поля и данных компонента прикрепленнго к GameObject, 
         [SerializeField] private float _jumpSpeed;
+        [SerializeField] private float _damageJumpSpeed;
         [SerializeField] private LayerCheck _groundCheck;
         //[SerializeField] private Vector3 _groundCheckPositionDelta;
         //[SerializeField] private LayerMask _groundLayer; // Добавляем поле в котором будет физический слой земли тип LayerMask 
@@ -30,6 +31,8 @@ namespace FirstPlatformer
         private static readonly int isGroundKey = Animator.StringToHash("is-ground"); // int так как метод преобразует строку к int
         private static readonly int isRunning = Animator.StringToHash("is-running");
         private static readonly int verticalVelocity = Animator.StringToHash("vertical-velocity");
+        private static readonly int Hit = Animator.StringToHash("hit");
+
 
         private void Awake()
         {
@@ -138,6 +141,12 @@ namespace FirstPlatformer
                     Debug.Log($"Общее кол-во монет {_coinsCount}");
                     break;
             }
+        }
+
+        public void TakeDamage()
+        {
+            _animator.SetTrigger(Hit);
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed); // при получении урона устанавливаем насколько подпрыгнет герой
         }
 
         //private void OnDrawGizmos() //метод отрисовывается во время отрисовки дебажных иконок и информации на нашей сцене 
