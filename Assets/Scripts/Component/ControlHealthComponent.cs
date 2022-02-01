@@ -19,7 +19,6 @@ namespace FirstPlatformer.Components
             if (healthComponent != null)
             {
                 healthComponent.ApplyDamage(_damage);
-                Debug.Log($"Получен урон");
             }
         }
 
