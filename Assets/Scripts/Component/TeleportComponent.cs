@@ -7,11 +7,11 @@ namespace FirstPlatformer.Components
 {
     public class TeleportComponent : MonoBehaviour
     {
-        [SerializeField] private Transform _destPosition;
+        [SerializeField] private Transform _destTransform;
 
         public void Teleport(GameObject target)
         {
-            target.transform.position = _destPosition.position;
+            target.transform.position = _destTransform.position;
         }
     }
 }

@@ -17,11 +17,19 @@ namespace FirstPlatformer.Components
         {
             _health -= damageValue;
             _onDamage?.Invoke(); // Короткий синтексис ноу чека проверит не явлется ли _onDamage = Null и если нет вызовет метод
+            Debug.Log($"Текущее здоровье {_health}");
             if (_health <= 0)
             {
                 _onDie?.Invoke();
             }
         }
+
+        public void ApplyTreatment(int treatmentValue)
+        {
+            _health += treatmentValue;
+            Debug.Log($"Текущее здоровье {_health}");
+        }
+
     }
 }
 
