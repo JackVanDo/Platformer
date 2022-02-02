@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace FirstPlatformer.Components
 {
-    public class HealthComponent : MonoBehaviour
+    public class CharStats : MonoBehaviour
     {
         [SerializeField] private int _health;
         [SerializeField] private UnityEvent _onDamage;

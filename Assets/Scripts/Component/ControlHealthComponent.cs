@@ -15,7 +15,7 @@ namespace FirstPlatformer.Components
 
         public void ApplyDamage(GameObject target)
         {
-            var healthComponent = target.GetComponent<HealthComponent>(); //получаем доступ к компоненту где хранится ХП
+            var healthComponent = target.GetComponent<CharStats>(); //получаем доступ к компоненту где хранится ХП
             if (healthComponent != null)
             {
                 healthComponent.ApplyDamage(_damage);
@@ -24,7 +24,7 @@ namespace FirstPlatformer.Components
 
         public void ApplyTreatment(GameObject target)
         {
-            var healthComponent = target.GetComponent<HealthComponent>();
+            var healthComponent = target.GetComponent<CharStats>();
             if (healthComponent != null)
             {
                 healthComponent.ApplyTreatment(_treatment);

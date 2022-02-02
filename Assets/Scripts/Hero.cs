@@ -135,20 +135,6 @@ namespace FirstPlatformer
 
         }
 
-        private void OnTriggerEnter2D(Collider2D other) // Подсчет монет
-        {
-            switch (other.gameObject.layer)
-            {
-                case 8:
-                    _coinsCount++;
-                    Debug.Log($"Общее кол-во монет {_coinsCount}");
-                    break;
-                case 9:
-                    _coinsCount = _coinsCount + 10;
-                    Debug.Log($"Общее кол-во монет {_coinsCount}");
-                    break;
-            }
-        }
 
         public void TakeDamage()
         {

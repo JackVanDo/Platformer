@@ -57,7 +57,7 @@
     <Compile Include="Assets\Scripts\Component\SpriteAnimation.cs" />
     <Compile Include="Assets\Scripts\Component\DestroyObjectComponent.cs" />
     <Compile Include="Assets\Scripts\FollowTarget.cs" />
-    <Compile Include="Assets\Scripts\Component\HealthComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\CharStats.cs" />
     <Compile Include="Assets\Scripts\LayerCheck.cs" />
     <Compile Include="Assets\Scripts\Component\InteractableComponent.cs" />
     <Compile Include="Assets\Scripts\Component\EnterCollisionComponent.cs" />
