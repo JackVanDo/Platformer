@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9031779512962575474}
   - component: {fileID: 9031779512962575475}
-  - component: {fileID: 5421851868158353411}
   - component: {fileID: 9031779512962575472}
+  - component: {fileID: 5421851868158353411}
   - component: {fileID: 9031779512962575476}
   - component: {fileID: 9031779512962575473}
   - component: {fileID: 9031779512962575486}
@@ -89,6 +89,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9031779512962575472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9031779512962575487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18029b725b13d7645bcb5de91a7cb572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tag: Player
+  _action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9031779512962575486}
+        m_TargetAssemblyTypeName: FirstPlatformer.Components.ControlHealthComponent,
+          Assembly-CSharp
+        m_MethodName: ApplyTreatment
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5421851868158353411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,35 +169,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
---- !u!114 &9031779512962575472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9031779512962575487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18029b725b13d7645bcb5de91a7cb572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tag: Player
-  _action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9031779512962575486}
-        m_TargetAssemblyTypeName: FirstPlatformer.Components.ControlHealthComponent,
-          Assembly-CSharp
-        m_MethodName: ApplyTreatment
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &9031779512962575476
 MonoBehaviour:
