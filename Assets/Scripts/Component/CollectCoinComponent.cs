@@ -1,24 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 
 namespace FirstPlatformer.Components
 {
     public class CollectCoinComponent : MonoBehaviour
     {
-        //[SerializeField] private string _tag;
-        //[SerializeField] private Hero _hero;
+
         [SerializeField] private int _coinPrice;
 
-        private int _coinsCount;
 
 
-        public void CollectCoins(int coinPrice)
+        public void CollectCoin(GameObject target)
         {
-            _coinsCount += coinPrice;
-            Debug.Log($"ќбщее кол-во монет {_coinsCount}");
+            var charStats = target.GetComponent<CharStats>();
+            if(charStats != null)
+            {
+                charStats.CollectCoins(_coinPrice);
+            }
         }
+
+
+        
 
 
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace FirstPlatformer.Components
     {
         [SerializeField] private string _tag;
         [SerializeField] private UnityEvent _action; //Это обьект для сериализации методов, в неё можем передать метод из другого компонета и вызвать его
+        [SerializeField] private EnterEvent _targetAction; //Это обьект для сериализации методов, в неё можем передать метод из другого компонета и вызвать его
+
 
 
         private void OnTriggerEnter2D(Collider2D other) // встроенная функция показывает обьект с которым мы стригерились
@@ -21,8 +24,14 @@ namespace FirstPlatformer.Components
                 if(_action != null)
                 {
                     _action.Invoke();
+                    _targetAction?.Invoke(other.gameObject);
                 }
             }
+        }
+
+        [Serializable]
+        public class EnterEvent : UnityEvent<GameObject>
+        {
         }
     }
 }

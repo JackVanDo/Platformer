@@ -12,22 +12,21 @@ namespace FirstPlatformer.Components
         [SerializeField] private int _treatment;
 
 
-
         public void ApplyDamage(GameObject target)
         {
-            var healthComponent = target.GetComponent<CharStats>(); //получаем доступ к компоненту где хранится ХП
-            if (healthComponent != null)
+            var charStats = target.GetComponent<CharStats>(); //получаем доступ к компоненту где хранится ХП
+            if (charStats != null)
             {
-                healthComponent.ApplyDamage(_damage);
+                charStats.ApplyDamage(_damage);
             }
         }
 
         public void ApplyTreatment(GameObject target)
         {
-            var healthComponent = target.GetComponent<CharStats>();
-            if (healthComponent != null)
+            var charStats = target.GetComponent<CharStats>();
+            if (charStats != null)
             {
-                healthComponent.ApplyTreatment(_treatment);
+                charStats.ApplyTreatment(_treatment);
             }
         }
     }
