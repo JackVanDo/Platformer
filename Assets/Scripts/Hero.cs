@@ -34,6 +34,7 @@ namespace FirstPlatformer
         private bool _isGrounded;
         private bool _allowDoubleJump;
         private Collider2D[] _interactionResult = new Collider2D[1];
+        private bool _isJumping;
 
         private static readonly int isGroundKey = Animator.StringToHash("is-ground"); // int так как метод преобразует строку к int
         private static readonly int isRunning = Animator.StringToHash("is-running");
@@ -80,13 +81,17 @@ namespace FirstPlatformer
             var yVelocity = _rigidbody.velocity.y;
             var isJumpingPressing = _direction.y > 0;
 
-            if (_isGrounded) _allowDoubleJump = true;
-
+            if (_isGrounded)
+            {
+                _allowDoubleJump = true;
+                _isJumping = false;
+            }
             if (isJumpingPressing)
             {
+                _isJumping = true;
                 yVelocity = CalculateJumpVelocity(yVelocity);
             }
-            else if (_rigidbody.velocity.y > 0)
+            else if (_rigidbody.velocity.y > 0 && _isJumping)
             {
                 yVelocity *= 0.5f;
             }
@@ -138,6 +143,7 @@ namespace FirstPlatformer
 
         public void TakeDamage()
         {
+            _isJumping = false;
             _animator.SetTrigger(Hit);
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed); // при получении урона устанавливаем насколько подпрыгнет герой
         }

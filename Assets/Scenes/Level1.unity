@@ -5299,9 +5299,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32debfd4dc8b7ad4e9dd3bc2b1b94c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
-  _jumpSpeed: 10
-  _damageJumpSpeed: 40
+  _speed: 4
+  _jumpSpeed: 11
+  _damageJumpSpeed: 8
   _groundCheck: {fileID: 966332124}
   _interactionRadius: 1
   _interactionLayer:
@@ -8444,8 +8444,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339219533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.44, y: 3.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 10.73, y: -0.62, z: 0}
+  m_LocalScale: {x: 1, y: 1.7625, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 47
@@ -8478,7 +8478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f958e3bfbaf564991fb355446ade50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destTransform: {fileID: 0}
+  _destTransform: {fileID: 1334867489}
 --- !u!114 &1339219538
 MonoBehaviour:
   m_ObjectHideFlags: 0
