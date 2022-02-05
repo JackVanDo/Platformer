@@ -8,7 +8,6 @@ public class TestComponent : MonoBehaviour
 
     public class SomeClass
     {
-        [Inject]
         private AnotherClass _another;
 
         public SomeClass(AnotherClass another)
