@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\HeroInputReader.cs" />
+    <Compile Include="Assets\Scripts\Component\TestComponent.cs" />
     <Compile Include="Assets\Scripts\Component\SpriteAnimation.cs" />
     <Compile Include="Assets\Scripts\Component\DestroyObjectComponent.cs" />
     <Compile Include="Assets\Scripts\FollowTarget.cs" />
@@ -69,7 +70,7 @@
     <Compile Include="Assets\Scripts\Hero.cs" />
     <Compile Include="Assets\Scripts\Component\SwitchComponent.cs" />
     <Compile Include="Assets\Scripts\Component\EnterTriggerComponent.cs" />
-    <Compile Include="Assets\Scripts\Component\TestComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\SpawnComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
