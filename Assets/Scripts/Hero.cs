@@ -17,6 +17,9 @@ namespace FirstPlatformer
         [SerializeField] private LayerCheck _groundCheck;
         [SerializeField] private float _interactionRadius;
         [SerializeField] private LayerMask _interactionLayer;
+    
+        [SerializeField] private SpawnComponent _footStepParticles;
+        [SerializeField] private ParticleSystem _hitParticles;
 
 
 
@@ -28,13 +31,12 @@ namespace FirstPlatformer
 
         private Vector2 _direction;
         private Rigidbody2D _rigidbody;
-        private int _coinsCount = 0;
         private Animator _animator;
-        private SpriteRenderer _sprite;
         private bool _isGrounded;
         private bool _allowDoubleJump;
         private Collider2D[] _interactionResult = new Collider2D[1];
         private bool _isJumping;
+        private CharStats _heroStats;
 
         private static readonly int isGroundKey = Animator.StringToHash("is-ground"); // int так как метод преобразует строку к int
         private static readonly int isRunning = Animator.StringToHash("is-running");
@@ -46,7 +48,7 @@ namespace FirstPlatformer
         {
             _rigidbody = GetComponent<Rigidbody2D>(); //получаем физическое тело обьекта, или получаем компонент RigidBody
             _animator = GetComponent<Animator>();
-            _sprite = GetComponent<SpriteRenderer>();
+            _heroStats = GetComponent<CharStats>();
         }
 
         public void SetDirection(Vector2 direction)
@@ -104,7 +106,7 @@ namespace FirstPlatformer
             var isFalling = _rigidbody.velocity.y <= 0.001f;
             if (!isFalling) return yVelocity;
 
-            if(_isGrounded)
+            if (_isGrounded)
             {
                 yVelocity += _jumpSpeed;
             } else if (_allowDoubleJump)
@@ -120,11 +122,11 @@ namespace FirstPlatformer
         {
             if (_direction.x > 0)
             {
-                _sprite.flipX = false;
+                transform.localScale = new Vector3(1, 1, 1);  // меняем направление по оси X для HERO и всех дочерних элементов
             }
             else if (_direction.x < 0)
             {
-                _sprite.flipX = true;
+                transform.localScale = new Vector3(-1, 1, 1);
             }
         }
 
@@ -146,8 +148,25 @@ namespace FirstPlatformer
             _isJumping = false;
             _animator.SetTrigger(Hit);
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed); // при получении урона устанавливаем насколько подпрыгнет герой
+
+            if(_heroStats._coinsCount > 0)
+            {
+                SpawnCoins();
+            }
         }
 
+
+        private void SpawnCoins()
+        {
+            var numCoinsToDispose = Mathf.Min(_heroStats._coinsCount, 5); // Проверяем есть ли нужное кол-во монет для партикла, если есть отдадим 5 если нет то столько сколько есть
+            _heroStats._coinsCount -= numCoinsToDispose;
+
+            var burst = _hitParticles.emission.GetBurst(0); // получаем нужный нам в партикал систем таб, далее получаем первый берст в массиве 
+            burst.count = numCoinsToDispose; //кол-во выкидываемых монет ставим полученные от расчетов выше
+            _hitParticles.emission.SetBurst(0, burst); // устанавливаем полученное кол-во монет в первый берст
+            _hitParticles.gameObject.SetActive(true); // метод в который передаем нашу партиклсистему, потом активируем её и проигрываем
+            _hitParticles.Play();
+        }
 
         public void Interact()
         {
@@ -161,6 +180,12 @@ namespace FirstPlatformer
                     interactable.Interact();
                 }
             }
+        }
+
+
+        public void SpawnFootDust() // Метод создан для отрсовки партикла в ивентах анимации
+        {
+            _footStepParticles.Spawn(); 
         }
 
         //private void OnDrawGizmos() //метод отрисовывается во время отрисовки дебажных иконок и информации на нашей сцене 

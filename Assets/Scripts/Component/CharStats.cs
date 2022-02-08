@@ -9,7 +9,7 @@ namespace FirstPlatformer.Components
     public class CharStats : MonoBehaviour
     {
         [SerializeField] private int _health;
-        [SerializeField] private int _coinsCount;
+        [SerializeField] public int _coinsCount; // сделал публичной для теста
         [SerializeField] private UnityEvent _onDamage;
         [SerializeField] private UnityEvent _onDie;
 
