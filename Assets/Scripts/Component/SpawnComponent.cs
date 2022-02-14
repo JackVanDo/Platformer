@@ -7,7 +7,7 @@ namespace FirstPlatformer.Components
     public class SpawnComponent : MonoBehaviour
     {
         [SerializeField] private Transform _target; //Обьект где будет создаваться спрайт
-        [SerializeField] private GameObject _prefab; // Партикол который будем создавать
+        [SerializeField] private GameObject _prefab; // Партикал который будем создавать
 
 
         [ContextMenu("Spawn")]

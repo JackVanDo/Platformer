@@ -19,6 +19,7 @@ namespace FirstPlatformer
         [SerializeField] private LayerMask _interactionLayer;
     
         [SerializeField] private SpawnComponent _footStepParticles;
+        [SerializeField] private SpawnComponent _jumpParticles;
         [SerializeField] private ParticleSystem _hitParticles;
 
 
@@ -183,9 +184,18 @@ namespace FirstPlatformer
         }
 
 
-        public void SpawnFootDust() // Метод создан для отрсовки партикла в ивентах анимации
+        public void SpawnFootDust() // Метод создан для отрисовки партикла в ивентах анимации
         {
             _footStepParticles.Spawn(); 
+        }
+
+
+        public void JumpDust() // Метод создан для отрисовки партикла в прыжке
+        {
+            if (_isJumping)
+            {
+                _jumpParticles.Spawn();
+            }
         }
 
         //private void OnDrawGizmos() //метод отрисовывается во время отрисовки дебажных иконок и информации на нашей сцене 
